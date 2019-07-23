@@ -1,0 +1,252 @@
+; To use these aliases, you must include this file in .gitconfig
+; inlucde this stanza in your .gitconfig, where `.gitalias` is the path to this file,
+; release to the location of your .gitconfig
+
+; [include]
+; path = .gitalias
+
+[alias]
+
+; when was a file added
+added = log --diff-filter=A --
+
+alias = config --get-regexp ^alias\\.
+aliases = config --get-regexp ^alias\\.
+
+; add (`git add`) unstaged files
+add-new = ! "gitaddnew() { git ls-files --others --exclude-standard | xargs git add ; }; gitaddnew"
+
+; go back one commit
+back = checkout HEAD~1
+
+; show all branches
+branches = ! "gitbranches() { git branch -a | grep ${1:-''} ; }; gitbranches"
+
+; set the description on the branch
+branch-describe = branch --edit-description
+
+; summarize unstaged changes
+changed = diff --stat
+
+; show only changes to existing files (not new, uncommitted files, nor unstaged deletions)
+changes = diff --diff-filter=M
+
+; remove all unstaged changes
+clear = reset --hard
+
+; empty git's cache
+clear-cache = rm -r --cached .
+
+; checkout all remote branches
+checkout-all = ! "gitcheckoutall() { git branch -a | sed -n \"/\\/HEAD /d; /\\/master$/d; /remotes/p;\" | xargs -L1 git checkout -t; }; gitcheckoutall"
+co-all = ! "gitcoall() { git branch -a | sed -n \"/\\/HEAD /d; /\\/master$/d; /remotes/p;\" | xargs -L1 git checkout -t; }; gitcoall"
+
+; show commits that are only in this branch
+; git commits [branch-name]
+commits = ! "gitcommits() { git cherry -v ${1:-master} ; }; gitcommits"
+
+; show unique committer usernames
+committers = ! "gitcommitters() { git log --pretty='%an %ae%n%cn %ce' | sort | uniq; }; gitcommitters"
+
+; show files in conflict
+conflict = diff --name-only --diff-filter=U
+conflicted = diff --name-only --diff-filter=U
+conflicts = diff --name-only --diff-filter=U
+
+; copy a file wholesale from another branch, without staging it
+;   git copy <absolute-file-path> <branch>
+;   see `take`
+copy = ! "gitcopy() { git show $2:$1 > $1 ; }; gitcopy"
+
+; show just the name of the current branch
+current = rev-parse --abbrev-ref HEAD
+
+; alias for checkout -p
+; git discard [filename]
+discard = ! "gitdiscard() { git checkout -p ${1}; }; gitdiscard"
+
+; commit file deletions not done by `git rm`.
+; TODO: add specify filename feature
+delete = ! "gitdelete() { git diff --diff-filter=D --name-only | xargs -p -0 git rm; }; gitdelete"
+
+; show the log of files deleted in this branch
+deleted = ! "gitdeleted() { git log --diff-filter=D --summary; }; gitdeleted"
+
+; set the description on the branch
+describe-branch = branch --edit-description
+
+; show the description of the current/specified branch
+description = ! "gitdescription() { git config branch.${1:-$(git rev-parse --abbrev-ref HEAD)}.description ; }; gitdescription"
+
+; use `tput` to apply the approprate column size in a `diff --stat`
+diff-stat = ! "gitdiffstat() { git diff --stat=$(tput cols) ${1:-master} ; }; gitdiffstat"
+
+; if you've added a tracked file to the .gitignore, it will still persist. This removes it.
+forget = rm --cached
+
+; show what files are ignored
+ignored = ls-files --others --exclude-standard --ignored
+
+; set the current repo to ignore filemode
+ignore-filemode = config core.fileMode false
+
+; in which commit was a file introduced
+;  see `added`
+introduced = log --diff-filter=A --
+
+; show the latest commits
+;   alias `newest`
+latest = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+
+; show local branches
+local = branch
+locals = branch
+
+; use `tput` to apply the approprate column size in a `log --stat`
+log-stat = ! "gitlogstat() { git log --stat=$(tput cols) ; }; gitlogstat"
+
+; show merged branches
+merged = branch --merge
+
+; show diff(s) of modified files only (no untracked or deleted files)
+modified = diff --diff-filter=M
+
+; show only new (unstaged) files
+new = ls-files --others --exclude-standard
+
+; show the newest commits
+;   alias `latest`
+latest = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+
+; a nice, concise log
+nicelog = log --graph --decorate --all --oneline
+
+; show local branches not tracking a remote
+non-tracking = ! "gitnonntracking() { git branch -vv | cut -c 3- | awk '$3 !~/\\[/ { print $1 }' ; }; gitnonntracking"
+
+; "obituary" -- in which commit was a file deleted
+; git obit [filename]
+
+; "obituaries"-- show log only of file delestions
+obits = !"gitobits() { git log --diff-filter=D --summary; }; gitobits"
+
+; show list of branches ordered by oldest commit
+oldest = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+
+; show the log in oneline format
+oneline = log --oneline
+
+; show the state of the current git repo
+state = ! "git rev-parse --show-toplevel; git remote -v; git branch; git status; git rev-parse HEAD;"
+
+; `cherry-pick` is simply too much typing
+pick = cherry-pick
+pluck = cherry-pick
+
+; remove changes and untracked files/directories
+purify = ! "gitpurify() { git reset --hard; git clean -d -f; }; gitpurify"
+
+; show the root directory of the repository
+pwd = rev-parse --show-toplevel;
+
+; show the most recent commits in any branch
+recent = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+
+; show only remote branches
+remote-branches = branch -r
+
+; show all remote repos
+remotes = remote -v
+
+; restore a file whose deletion has been committed
+;   git restore FILENAME
+restore = !git checkout $(git rev-list -n 1 HEAD -- "$1")^ -- "$1"
+revive = !git checkout $(git rev-list -n 1 HEAD -- "$1")^ -- "$1"
+resurrect = !git checkout $(git rev-list -n 1 HEAD -- "$1")^ -- "$1"
+
+; show if branches are ahead or behind of remote
+schedule = for-each-ref --format="%(refname:short) %(upstream:track)" refs/heads
+
+; delete all uncommitted changes and untracked files
+scrub = ! "gitscrub() { git reset --hard; git clean -f -f -d; }; gitscrub"
+
+; set the upstream repo {default `origin`} (useful when git tells you a long --set-upstream command)
+; git set-upstream [remote|'origin']
+set-upstream = ! "gitsetupstream() { BRANCH=$(git rev-parse --abbrev-ref HEAD); git push ${1:-origin} $BRANCH; git branch --set-upstream-to=${1:-origin}/$BRANCH $BRANCH; }; gitsetupstream"
+
+; show the filesystem size of the tracked objects in the repo
+size = count-objects -vH
+
+shortstat = status --short
+
+; merge one branch into another without checking it out
+; converse of 'git checkout a; git merge b'
+; `git shove source target`
+shove = ! "gitshove() { git fetch . $1 $2 ; }; gitshove"
+
+; keep a file from changing, see `unskip`, `skipped`
+skip = update-index --skip-worktree
+
+; Show which worktrees are skipped. See `skip`, `unskip`
+skipped = ! "gitskipped() { git ls-files -v | grep ^[sS] ; }; gitskipped"
+
+; show files that are staged (added but not committed)
+staged = diff --cached
+
+; show all tags
+tags = ! "gittags() { git tag; }; gittags"
+; I made this is a bash function so that you can't accidentally set a tag with this
+
+; copy a file wholesale form another branch, and stage it
+;   see `copy`
+take = ! "gittake() { git checkout $1 $2 ; }; gittake"
+
+; show just the name of the current branch
+this = rev-parse --abbrev-ref HEAD
+
+; show what files are being tracked
+tracked = ls-tree -r master --name-only
+
+; show what remote(s) the current branch is tracking
+tracking = rev-parse --abbrev-ref --symbolic-full-name @{u}
+
+; restore deleted files if changes aren't staged
+undelete = ! "gitundelete() { git status | grep 'deleted' | awk '{print $2}' | xargs git checkout -- ; }; gitundelete"
+
+; show what files would be committed
+uncommitted = ls-files --others --exclude-standard
+
+; remove changes from staging area and reintroduce them as changes/diffs
+uncommit = reset --soft HEAD^
+
+; remove the lock file
+unlock = ! "gitunlock() { rm -f ./.git/index.lock ; }; gitunlock"
+
+; show branches unmerged into specified branch
+; git unmerged [BRANCH|'master']
+unmerged = ! "gitunmerged() { git branch --no-merged ${1:-master}; }; gitunmerged"
+
+; tell git to start noticing changes to a file again. See `skip`, `skipped`
+unskip = update-index --no-skip-worktree
+
+; unstaged staged changes
+unstage = reset
+
+; show what files are not tracked
+untracked = ls-files --others --exclude-standard --ignored
+
+; delete new, untracked, uncommitted files
+unwelcome = clean -f -d
+
+; show all local branches with commits not pushed
+unpushed = log --branches --not --remotes --no-walk --decorate
+
+; show what files are tracked in the repos
+versioned = ls-tree -r master --name-only
+
+; show branches out of date (don't have the commits from) with a branch
+without = ! "gitwithout() { git branch --no-contains ${1:-master}; }; gitwithout"
+
+; word diff
+word-diff  = diff --word-diff
+wd = diff --word-diff
