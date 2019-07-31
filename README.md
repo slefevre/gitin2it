@@ -14,7 +14,8 @@ to your user's `.gitconfig` (usually at ~/.gitconfig)
 Git aliases that 
  - are intuitively, idiomatically named *
  - replace commands that have switches...
-   - `git ignored` vs. `git ls-files --others --exclude-standard --ignored`&nsbp *show ignored files in repository*
+   - `git ignored` vs. `git ls-files --others --exclude-standard --ignored`
+     *show ignored files in repository*
  - ... or syntax
    - `git back` vs. `git checkout HEAD~1` 
  - are named after google searches or stack overflow questions
