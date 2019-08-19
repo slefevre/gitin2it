@@ -13,9 +13,6 @@ added = log --diff-filter=A --
 alias = config --get-regexp ^alias\\.
 aliases = config --get-regexp ^alias\\.
 
-; add (`git add`) unstaged files
-add-new = ! "gitaddnew() { git ls-files --others --exclude-standard | xargs git add ; }; gitaddnew"
-
 ; go back one commit
 back = checkout HEAD~1
 
@@ -37,10 +34,6 @@ clear = reset --hard
 ; empty git's cache
 clear-cache = rm -r --cached .
 
-; checkout all remote branches
-checkout-all = ! "gitcheckoutall() { git branch -a | sed -n \"/\\/HEAD /d; /\\/master$/d; /remotes/p;\" | xargs -L1 git checkout -t; }; gitcheckoutall"
-co-all = ! "gitcoall() { git branch -a | sed -n \"/\\/HEAD /d; /\\/master$/d; /remotes/p;\" | xargs -L1 git checkout -t; }; gitcoall"
-
 ; show commits that are only in this branch
 ; git commits [branch-name]
 commits = ! "gitcommits() { git cherry -v ${1:-master} ; }; gitcommits"
@@ -49,8 +42,6 @@ commits = ! "gitcommits() { git cherry -v ${1:-master} ; }; gitcommits"
 committers = ! "gitcommitters() { git log --pretty='%an %ae%n%cn %ce' | sort | uniq; }; gitcommitters"
 
 ; show files in conflict
-conflict = diff --name-only --diff-filter=U
-conflicted = diff --name-only --diff-filter=U
 conflicts = diff --name-only --diff-filter=U
 
 ; copy a file wholesale from another branch, without staging it
@@ -70,7 +61,7 @@ discard = ! "gitdiscard() { git checkout -p ${1}; }; gitdiscard"
 delete = ! "gitdelete() { git diff --diff-filter=D --name-only | xargs -p -0 git rm; }; gitdelete"
 
 ; show the log of files deleted in this branch
-deleted = ! "gitdeleted() { git log --diff-filter=D --summary; }; gitdeleted"
+deletions = ! "gitdeleted() { git log --diff-filter=D --summary; }; gitdeleted"
 
 ; set the description on the branch
 describe-branch = branch --edit-description
@@ -83,6 +74,8 @@ diff-stat = ! "gitdiffstat() { git diff --stat=$(tput cols) ${1:-master} ; }; gi
 
 ; if you've added a tracked file to the .gitignore, it will still persist. This removes it.
 forget = rm --cached
+
+; TODO: `ignore` command -- add a file or dir to the .gitignore file
 
 ; show what files are ignored
 ignored = ls-files --others --exclude-standard --ignored
@@ -177,12 +170,7 @@ set-upstream = ! "gitsetupstream() { BRANCH=$(git rev-parse --abbrev-ref HEAD); 
 ; show the filesystem size of the tracked objects in the repo
 size = count-objects -vH
 
-shortstat = status --short
-
-; merge one branch into another without checking it out
-; converse of 'git checkout a; git merge b'
-; `git shove source target`
-shove = ! "gitshove() { git fetch . $1 $2 ; }; gitshove"
+short-stat = status --short
 
 ; keep a file from changing, see `unskip`, `skipped`
 skip = update-index --skip-worktree
@@ -194,8 +182,8 @@ skipped = ! "gitskipped() { git ls-files -v | grep ^[sS] ; }; gitskipped"
 staged = diff --cached
 
 ; show all tags
-tags = ! "gittags() { git tag; }; gittags"
 ; I made this is a bash function so that you can't accidentally set a tag with this
+tags = ! "gittags() { git tag; }; gittags"
 
 ; copy a file wholesale form another branch, and stage it
 ;   see `copy`
@@ -243,6 +231,9 @@ unpushed = log --branches --not --remotes --no-walk --decorate
 
 ; show what files are tracked in the repos
 versioned = ls-tree -r master --name-only
+
+; add (`git add`) unstaged files
+welcome = ! "gitaddnew() { git ls-files --others --exclude-standard | xargs git add ; }; gitaddnew"
 
 ; show branches out of date (don't have the commits from) with a branch
 without = ! "gitwithout() { git branch --no-contains ${1:-master}; }; gitwithout"

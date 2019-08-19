@@ -30,6 +30,10 @@ Git aliases that
   - abbrevations
     - `git co` for `git checkout`
 
+# TODO
+
+ - `ignore` command
+
 \* Who decides what is intuitive or idiomatic?
 
 > I do. 
