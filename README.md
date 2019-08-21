@@ -2,12 +2,14 @@
 set of aliases to make git actions more intuitive
 
 # Installation
-I recommend that you clone this repo into your home dir, then add this to your user's `.gitconfig`
+Add the following lines to your ~/.gitconfig
 
 ```
 [include]
-path = ./gitin2it/gitin2it
+path = path/to/gitin2it
 ```
+
+where `path/to/gitin2it` is the path, relative from the location of your `.gitconfig` file, to the `gitin2it` file in this repo.
 
 # What belongs here?
 Git aliases that 
