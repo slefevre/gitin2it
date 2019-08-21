@@ -107,9 +107,6 @@ modified = diff --diff-filter=M
 ; show only new (unstaged) files
 new = ls-files --others --exclude-standard
 
-; show the newest commits
-;   alias `latest`
-latest = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
 
 ; a nice, concise log
 nicelog = log --graph --decorate --all --oneline
@@ -123,9 +120,6 @@ non-tracking = ! "gitnonntracking() { git branch -vv | cut -c 3- | awk '$3 !~/\\
 ; "obituaries"-- show log only of file delestions
 obits = !"gitobits() { git log --diff-filter=D --summary; }; gitobits"
 
-; show list of branches ordered by oldest commit
-oldest = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
-
 ; show the log in oneline format
 oneline = log --oneline
 
@@ -134,16 +128,12 @@ state = ! "git rev-parse --show-toplevel; git remote -v; git branch; git status;
 
 ; `cherry-pick` is simply too much typing
 pick = cherry-pick
-pluck = cherry-pick
 
 ; remove changes and untracked files/directories
 purify = ! "gitpurify() { git reset --hard; git clean -d -f; }; gitpurify"
 
 ; show the root directory of the repository
 pwd = rev-parse --show-toplevel;
-
-; show the most recent commits in any branch
-recent = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
 
 ; show only remote branches
 remote-branches = branch -r
