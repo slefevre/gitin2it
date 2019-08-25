@@ -1,9 +1,9 @@
 ; To use these aliases, you must include this file in .gitconfig
-; inlucde this stanza in your .gitconfig, where `path/to/gitin2it` is the path to this file,
-; release to the location of your .gitconfig
+; inlucde this stanza in your .gitconfig, where `path/to/gitin2it/aliases` is the path to this file,
+; relative to the location of your .gitconfig
 
 ; [include]
-; path = path/to/gitin2it 
+; path = path/to/gitin2iti/aliases
 
 [alias]
 
