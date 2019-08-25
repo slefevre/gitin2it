@@ -70,7 +70,8 @@ describe-branch = branch --edit-description
 description = ! "gitdescription() { git config branch.${1:-$(git rev-parse --abbrev-ref HEAD)}.description ; }; gitdescription"
 
 ; use `tput` to apply the approprate column size in a `diff --stat`
-diff-stat = ! "gitdiffstat() { git diff --stat=$(tput cols) ${1:-master} ; }; gitdiffstat"
+;   git diff-stat [branch|master] [file]
+diff-stat = ! "gitdiffstat() { git diff --stat=$(tput cols) ${1:-master} $2 ; }; gitdiffstat"
 
 ; if you've added a tracked file to the .gitignore, it will still persist. This removes it.
 forget = rm --cached
@@ -96,7 +97,7 @@ local = branch
 locals = branch
 
 ; use `tput` to apply the approprate column size in a `log --stat`
-log-stat = ! "gitlogstat() { git log --stat=$(tput cols) ; }; gitlogstat"
+log-stat = ! "gitlogstat() { git log --stat=$(tput cols) $1 ; }; gitlogstat"
 
 ; show merged branches
 merged = branch --merge
