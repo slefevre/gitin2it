@@ -35,8 +35,12 @@ Git aliases that
   - personalizations or niceities, such as a custom log format with certain fields, colors, etc.
 
 # TODO
+ - define approach to verb tenses, nouns, plurals (e.g. `changes`, `change`, `changed`)
+ - add filename argument to `delete`
+ - `ignore`: add a file or directory to .gitignore
+ - `blamedir`: like blame, but shows who introduced files in a directory
 
- - `ignore` command
+---
 
 \* Who decides what is intuitive or idiomatic?
 
