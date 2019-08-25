@@ -14,7 +14,7 @@ alias = config --get-regexp ^alias\\.
 aliases = config --get-regexp ^alias\\.
 
 ; go back one commit
-back = checkout HEAD~1
+back = ! "gitback() { git checkout HEAD~${1:-1} ; }; gitback"
 
 ; show all branches
 branches = ! "gitbranches() { git branch -a | grep ${1:-''} ; }; gitbranches"
