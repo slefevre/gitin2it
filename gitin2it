@@ -107,10 +107,6 @@ modified = diff --diff-filter=M
 ; show only new (unstaged) files
 new = ls-files --others --exclude-standard
 
-
-; a nice, concise log
-nicelog = log --graph --decorate --all --oneline
-
 ; show local branches not tracking a remote
 non-tracking = ! "gitnonntracking() { git branch -vv | cut -c 3- | awk '$3 !~/\\[/ { print $1 }' ; }; gitnonntracking"
 
