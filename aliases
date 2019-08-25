@@ -76,8 +76,6 @@ diff-stat = ! "gitdiffstat() { git diff --stat=$(tput cols) ${1:-master} $2 ; };
 ; if you've added a tracked file to the .gitignore, it will still persist. This removes it.
 forget = rm --cached
 
-; TODO: `ignore` command -- add a file or dir to the .gitignore file
-
 ; show what files are ignored
 ignored = ls-files --others --exclude-standard --ignored
 
@@ -205,7 +203,7 @@ unmerged = ! "gitunmerged() { git branch --no-merged ${1:-master}; }; gitunmerge
 unskip = update-index --no-skip-worktree
 
 ; unstaged staged changes
-unstage = reset
+unstage = reset HEAD {$1}
 
 ; show what files are not tracked
 untracked = ls-files --others --exclude-standard --ignored
