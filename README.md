@@ -5,7 +5,7 @@ set of aliases to make git actions more intuitive
 Add the following lines to your ~/.gitconfig
 ```
 [include]
-path = path/to/gitin2iti/aliases
+path = path/to/gitin2it/aliases
 ```
 where `path/to/gitin2it/aliases` is the path, relative from the location of your `.gitconfig` file, to the `aliases` file in this repo.
 
