@@ -3,13 +3,11 @@ set of aliases to make git actions more intuitive
 
 # Installation
 Add the following lines to your ~/.gitconfig
-
 ```
 [include]
-path = path/to/gitin2it
+path = path/to/gitin2iti/aliases
 ```
-
-where `path/to/gitin2it` is the path, relative from the location of your `.gitconfig` file, to the `gitin2it` file in this repo.
+where `path/to/gitin2it/aliases` is the path, relative from the location of your `.gitconfig` file, to the `aliases` file in this repo.
 
 # What belongs here?
 Git aliases that 
