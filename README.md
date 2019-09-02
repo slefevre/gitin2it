@@ -1,5 +1,5 @@
 # gitin2it
-set of aliases to make git actions more intuitive
+set of aliases to make complex or rare git actions more intuitive
 
 # Installation
 Add the following lines to your ~/.gitconfig
@@ -8,6 +8,10 @@ Add the following lines to your ~/.gitconfig
 path = path/to/gitin2it/aliases
 ```
 where `path/to/gitin2it/aliases` is the path, relative from the location of your `.gitconfig` file, to the `aliases` file in this repo.
+
+# Documentation Sytax
+
+alias-name required-argument [optional-argument|'default-value'] [optional-argument]
 
 # What belongs here?
 Git aliases that 
