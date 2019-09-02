@@ -1,5 +1,5 @@
 # gitin2it
-set of aliases to make complex or rare git actions more intuitive
+a set of aliases to make complex or rare git actions more intuitive
 
 # Installation
 Add the following lines to your ~/.gitconfig
