@@ -111,6 +111,9 @@ new = ls-files --others --exclude-standard
 ;   alias `latest`
 latest = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
 
+; show the standard log, but only commits that are tagged
+log-tags = ! "gittaglog() { git log --date-order --date=format:'%Y-%m-%d %H:%M:%S' --format='%C(yellow)%cd%Creset  %h  \"%d %s\"  %Cred%cn %Cgreen(%cr)' | grep tag ; }; gittaglog"
+
 ; a nice, concise log
 nicelog = log --graph --decorate --all --oneline
 
