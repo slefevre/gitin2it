@@ -1,5 +1,5 @@
 ; To use these aliases, you must include this file in .gitconfig
-; inlucde this stanza in your .gitconfig, where `path/to/gitin2it/aliases` is the path to this file,
+; include this stanza in your .gitconfig, where `path/to/gitin2it/aliases` is the path to this file,
 ; relative to the location of your .gitconfig
 
 ; [include]
