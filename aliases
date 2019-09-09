@@ -94,6 +94,9 @@ latest = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color
 local = branch
 locals = branch
 
+; show the standard log, but only commits that are tagged
+log-tags = ! "gittaglog() { git log --date-order --date=format:'%Y-%m-%d %H:%M:%S' --format='%C(yellow)%cd%Creset  %h  \"%d %s\"  %Cred%cn %Cgreen(%cr)' | grep tag ; }; gittaglog"
+
 ; use `tput` to apply the approprate column size in a `log --stat`
 log-stat = ! "gitlogstat() { git log --stat=$(tput cols) $1 ; }; gitlogstat"
 
