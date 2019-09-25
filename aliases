@@ -166,6 +166,10 @@ skip = update-index --skip-worktree
 ; Show which worktrees are skipped. See `skip`, `unskip`
 skipped = ! "gitskipped() { git ls-files -v | grep ^[sS] ; }; gitskipped"
 
+; stash all files, including untracked ones
+; "How do I _stash untracked_ files?"
+stash-untracked = stash --untracked --
+
 ; show files that are staged (added but not committed)
 staged = diff --cached
 
