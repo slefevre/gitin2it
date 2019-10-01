@@ -58,7 +58,7 @@ discard = ! "gitdiscard() { git checkout -p ${1}; }; gitdiscard"
 
 ; commit file deletions not done by `git rm`.
 ; TODO: add specify filename feature
-delete = ! "gitdelete() { git diff --diff-filter=D --name-only | xargs -p -0 git rm; }; gitdelete"
+delete = ! "gitdelete() { git diff --diff-filter=D --name-only | xargs git rm; }; gitdelete"
 
 ; show the log of files deleted in this branch
 deletions = ! "gitdeleted() { git log --diff-filter=D --summary; }; gitdeleted"
