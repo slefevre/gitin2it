@@ -9,7 +9,7 @@ path = path/to/gitin2it/aliases
 ```
 where `path/to/gitin2it/aliases` is the path, relative from the location of your `.gitconfig` file, to the `aliases` file in this repo.
 
-# Documentation Sytax
+# Documentation Syntax
 
 alias-name required-argument [optional-argument|'default-value'] [optional-argument]
 
