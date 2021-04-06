@@ -28,6 +28,9 @@ changed = diff --stat
 ; show only changes to existing files (not new, uncommitted files, nor unstaged deletions)
 changes = diff --diff-filter=M
 
+; delete all uncommitted changes and untracked files
+cleanse = ! "gitcleanse() { git reset --hard; git clean -f -f -d; }; gitcleanse"
+
 ; remove all unstaged changes
 clear = reset --hard
 
