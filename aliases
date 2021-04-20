@@ -176,6 +176,9 @@ skip = update-index --skip-worktree
 ; Show which worktrees are skipped. See `skip`, `unskip`
 skipped = ! "gitskipped() { git ls-files -v | grep ^[sS] ; }; gitskipped"
 
+; do a squash commit
+squash = merge --squash
+
 ; stash all files, including untracked ones
 ; "How do I _stash untracked_ files?"
 stash-untracked = stash --untracked --
