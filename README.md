@@ -39,10 +39,12 @@ Git aliases that
   - personalizations or niceities, such as a custom log format with certain fields, colors, etc.
 
 # TODO
- - define approach to verb tenses, nouns, plurals (e.g. `changes`, `change`, `changed`)
- - add filename argument to `delete`
- - `ignore`: add a file or directory to .gitignore
- - `blamedir`: like blame, but shows who introduced files in a directory
+ - DOC define approach to verb tenses, nouns, plurals (e.g. `changes`, `change`, `changed`).
+ - FEA add filename argument to `delete`.
+ - FEA `ignore`: add a file or directory to .gitignore.
+ - FEA `blamedir`: like blame, but shows who introduced files in a directory.
+ - BUG `copy` throws error when asked to copy a file from another branch which doesn't exist on the current branch.
+    "fatal: Path 'resources/assets/js/ckeditor.js' exists on disk, but not in the index." 
 
 ---
 
