@@ -119,6 +119,11 @@ modified = diff --diff-filter=M
 ; show only new (unstaged) files
 new = ls-files --others --exclude-standard
 
+; check out the next commit going towards a branch head
+;    git checkout next master
+; https://stackoverflow.com/a/14200660/151841
+next = ! "gitnext() { git checkout $( git rev-list --topo-order HEAD.."$1" | tail -n 1 ) ; }; gitnext"
+
 ; show local branches not tracking a remote
 non-tracking = ! "gitnonntracking() { git branch -vv | cut -c 3- | awk '$3 !~/\\[/ { print $1 }' ; }; gitnonntracking"
 
