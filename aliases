@@ -170,6 +170,11 @@ schedule = for-each-ref --format="%(refname:short) %(upstream:track)" refs/heads
 ; delete all uncommitted changes and untracked files
 scrub = ! "gitscrub() { git reset --hard; git clean -f -f -d; }; gitscrub"
 
+; search the repo for a string
+; https://stackoverflow.com/a/13878026/151841
+; https://stackoverflow.com/a/49243541/151841
+search = ! "gitsearch() { git rev-list --all | xargs git grep $1; }; gitsearch"
+
 ; set the upstream repo {default `origin`} (useful when git tells you a long --set-upstream command)
 ; git set-upstream [remote|'origin']
 set-upstream = ! "gitsetupstream() { BRANCH=$(git rev-parse --abbrev-ref HEAD); git push ${1:-origin} $BRANCH; git branch --set-upstream-to=${1:-origin}/$BRANCH $BRANCH; }; gitsetupstream"
