@@ -76,6 +76,11 @@ description = ! "gitdescription() { git config branch.${1:-$(git rev-parse --abb
 ;   git diff-stat [branch|master] [file]
 diff-stat = ! "gitdiffstat() { git diff --stat=$(tput cols) ${1:-master} $2 ; }; gitdiffstat"
 
+; find a file (or partial filename match) anywhere in the repo
+; https://stackoverflow.com/a/16868704/151841
+;    git find-file PATTERN
+find-file = ! "gitfindfile() {  for branch in $(git rev-list --all); do if (git ls-tree -r --name-only $branch | grep --quiet "$1"); then echo $branch; fi ; done }; gitfindfile"
+
 ; if you've added a tracked file to the .gitignore, it will still persist. This removes it.
 forget = rm --cached
 
