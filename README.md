@@ -43,6 +43,7 @@ Git aliases that
  - FEA add filename argument to `delete`.
  - FEA `ignore`: add a file or directory to .gitignore.
  - FEA `blamedir`: like blame, but shows who introduced files in a directory.
+ - FEA `unmodify`: undo modifications, but keep/ignore new files, deletions, etc.
  - BUG `copy` throws error when asked to copy a file from another branch which doesn't exist on the current branch.
     "fatal: Path 'resources/assets/js/ckeditor.js' exists on disk, but not in the index." 
 
