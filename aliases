@@ -57,7 +57,7 @@ current = rev-parse --abbrev-ref HEAD
 
 ; delete a branch on local and remote
 ;    `git cut BRANCH-NAME [REMOTE-NAME]`
-cut = ! "gitcut() { git branch -d $1; git push $1 ${2:-origin}; }; gitcut"
+cut = ! "gitcut() { git branch -d $1; git push ${2:-origin} --delete $1; }; gitcut"
 
 ; alias for checkout -p
 ; git discard [filename]
