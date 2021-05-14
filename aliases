@@ -55,6 +55,10 @@ copy = ! "gitcopy() { git show $2:$1 > $1 ; }; gitcopy"
 ; show just the name of the current branch
 current = rev-parse --abbrev-ref HEAD
 
+; delete a branch on local and remote
+;    `git cut BRANCH-NAME [REMOTE-NAME]`
+cut = ! "gitcut() { git branch -d $1; git push $1 ${2:-origin}; }; gitcut"
+
 ; alias for checkout -p
 ; git discard [filename]
 discard = ! "gitdiscard() { git checkout -p ${1}; }; gitdiscard"
