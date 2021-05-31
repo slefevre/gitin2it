@@ -76,9 +76,10 @@ describe-branch = branch --edit-description
 ; show the description of the current/specified branch
 description = ! "gitdescription() { git config branch.${1:-$(git rev-parse --abbrev-ref HEAD)}.description ; }; gitdescription"
 
+; syntax sugar and QoL for `git diff --stat`
 ; use `tput` to apply the approprate column size in a `diff --stat`
-;   git diff-stat [branch|master] [file]
-diff-stat = ! "gitdiffstat() { git diff --stat=$(tput cols) ${1:-master} $2 ; }; gitdiffstat"
+;   git diff-stat [branch] 
+diff-stat = ! "gitdiffstat() { git diff --stat=$(tput cols) $1 ; }; gitdiffstat"
 
 ; find a file (or partial filename match) anywhere in the repo
 ; https://stackoverflow.com/a/37212743/151841 
