@@ -218,6 +218,11 @@ tags = ! "gittags() { git tag; }; gittags"
 ;   see `copy`
 take = ! "gittake() { git checkout $1 $2 ; }; gittake"
 
+; show commits in another branch that do not exist in the current branch
+; see welack
+; https://stackoverflow.com/a/4207176/151841
+theylack = ! "gittheylack() { git log --no-merges $(git rev-parse --abbrev-ref HEAD) $1 ; }; gittheylack"
+
 ; show just the name of the current branch
 this = rev-parse --abbrev-ref HEAD
 
@@ -260,6 +265,11 @@ unpushed = log --branches --not --remotes --no-walk --decorate
 
 ; show what files are tracked in the repos
 versioned = ls-tree -r master --name-only
+
+; show commits in another branch that do not exist in the current branch
+; see theylack
+; https://stackoverflow.com/a/4207176/151841
+welack = ! "gitwelack() { git log --no-merges $1 ${2:-$(git rev-parse --abbrev-ref HEAD)} ; }; gitwelack"
 
 ; add (`git add`) unstaged files
 welcome = ! "gitaddnew() { git ls-files --others --exclude-standard | xargs git add ; }; gitaddnew"
