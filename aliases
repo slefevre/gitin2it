@@ -13,6 +13,10 @@ added = log --diff-filter=A --
 alias = config --get-regexp ^alias\\.
 aliases = config --get-regexp ^alias\\.
 
+; list names of contributors
+;   see committers, contributors
+authors = ! "gitauthors() { git log --pretty='%an %ae%n%cn %ce' | sort | uniq; }; gitauthors"
+
 ; go back one commit
 back = ! "gitback() { git checkout HEAD~${1:-1} ; }; gitback"
 
@@ -42,6 +46,7 @@ clear-cache = rm -r --cached .
 commits = ! "gitcommits() { git cherry -v ${1:-master} ; }; gitcommits"
 
 ; show unique committer usernames
+;    see contributors, authors
 committers = ! "gitcommitters() { git log --pretty='%an %ae%n%cn %ce' | sort | uniq; }; gitcommitters"
 
 ; show files in conflict
@@ -51,6 +56,10 @@ conflicts = diff --name-only --diff-filter=U
 ;   git copy <absolute-file-path> <branch>
 ;   see `take`
 copy = ! "gitcopy() { git show $2:$1 > $1 ; }; gitcopy"
+
+; show unique contributor usernames
+;    see authors, committers
+contributors = ! "gitcontributors() { git log --pretty='%an %ae%n%cn %ce' | sort | uniq; }; gitcontributors"
 
 ; show just the name of the current branch
 current = rev-parse --abbrev-ref HEAD
