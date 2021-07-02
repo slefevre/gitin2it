@@ -267,6 +267,11 @@ unpushed = log --branches --not --remotes --no-walk --decorate
 ; show what files are tracked in the repos
 versioned = ls-tree -r master --name-only
 
+; enable verbosity levels
+v =  ! "gitv() { GIT_SSH_COMMAND=\"ssh -v\" git }; gitv"
+vv =  ! "gitvv() { GIT_SSH_COMMAND=\"ssh -vv\" git }; gitvv"
+vvv =  ! "gitvvv() { GIT_SSH_COMMAND=\"ssh -vvv\" git }; gitvvv"
+
 ; add (`git add`) unstaged files
 welcome = ! "gitaddnew() { git ls-files --others --exclude-standard | xargs git add ; }; gitaddnew"
 
