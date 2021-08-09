@@ -13,6 +13,10 @@ added = log --diff-filter=A --
 alias = config --get-regexp ^alias\\.
 aliases = config --get-regexp ^alias\\.
 
+; list names of contributors
+;   see committers, contributors
+authors = ! "gitauthors() { git log --pretty='%an %ae%n%cn %ce' | sort | uniq; }; gitauthors"
+
 ; go back one commit
 back = ! "gitback() { git checkout HEAD~${1:-1} ; }; gitback"
 
@@ -37,11 +41,12 @@ clear = reset --hard
 ; empty git's cache
 clear-cache = rm -r --cached .
 
-; show commits that are only in this branch
+; show commits that are only in this branch, and not in the other
 ; git commits [branch-name]
 commits = ! "gitcommits() { git cherry -v ${1:-master} ; }; gitcommits"
 
 ; show unique committer usernames
+;    see contributors, authors
 committers = ! "gitcommitters() { git log --pretty='%an %ae%n%cn %ce' | sort | uniq; }; gitcommitters"
 
 ; show files in conflict
@@ -51,6 +56,10 @@ conflicts = diff --name-only --diff-filter=U
 ;   git copy <absolute-file-path> <branch>
 ;   see `take`
 copy = ! "gitcopy() { git show $2:$1 > $1 ; }; gitcopy"
+
+; show unique contributor usernames
+;    see authors, committers
+contributors = ! "gitcontributors() { git log --pretty='%an %ae%n%cn %ce' | sort | uniq; }; gitcontributors"
 
 ; show just the name of the current branch
 current = rev-parse --abbrev-ref HEAD
@@ -76,9 +85,10 @@ describe-branch = branch --edit-description
 ; show the description of the current/specified branch
 description = ! "gitdescription() { git config branch.${1:-$(git rev-parse --abbrev-ref HEAD)}.description ; }; gitdescription"
 
+; syntax sugar and QoL for `git diff --stat`
 ; use `tput` to apply the approprate column size in a `diff --stat`
-;   git diff-stat [branch|master] [file]
-diff-stat = ! "gitdiffstat() { git diff --stat=$(tput cols) ${1:-master} $2 ; }; gitdiffstat"
+;   git diff-stat [branch] 
+diff-stat = ! "gitdiffstat() { git diff --stat=$(tput cols) $1 ; }; gitdiffstat"
 
 ; find a file (or partial filename match) anywhere in the repo
 ; https://stackoverflow.com/a/37212743/151841 
@@ -150,9 +160,6 @@ state = ! "git rev-parse --show-toplevel; git remote -v; git branch; git status;
 
 ; `cherry-pick` is simply too much typing
 pick = cherry-pick
-
-; remove changes and untracked files/directories
-purify = ! "gitpurify() { git reset --hard; git clean -d -f; }; gitpurify"
 
 ; show the root directory of the repository
 pwd = rev-parse --show-toplevel;
@@ -262,6 +269,9 @@ versioned = ls-tree -r master --name-only
 
 ; add (`git add`) unstaged files
 welcome = ! "gitaddnew() { git ls-files --others --exclude-standard | xargs git add ; }; gitaddnew"
+
+; show username and email
+whoami = ! "gitwhoami() { git config user.name; git config user.email; }; gitwhoami"
 
 ; show branches out of date (don't have the commits from) with a branch
 without = ! "gitwithout() { git branch --no-contains ${1:-master}; }; gitwithout"
