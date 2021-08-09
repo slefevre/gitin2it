@@ -41,9 +41,12 @@ Git aliases that
 # TODO
  - DOC define approach to verb tenses, nouns, plurals (e.g. `changes`, `change`, `changed`).
  - FEA add filename argument to `delete`.
+ - FEA add filename argument to `undelete`.
  - FEA `ignore`: add a file or directory to .gitignore.
+ - FEA some command to show files ignored but still tracked
  - FEA `blamedir`: like blame, but shows who introduced files in a directory.
  - FEA `unmodify`: undo modifications, but keep/ignore new files, deletions, etc.
+ - FEA `welcome`: add only new files
  - BUG `copy` throws error when asked to copy a file from another branch which doesn't exist on the current branch.
     "fatal: Path 'resources/assets/js/ckeditor.js' exists on disk, but not in the index." 
 
