@@ -77,7 +77,7 @@ discard = ! "gitdiscard() { git checkout -p ${1}; }; gitdiscard"
 delete = ! "gitdelete() { git diff --diff-filter=D --name-only | xargs git rm; }; gitdelete"
 
 ; show the log of files deleted in this branch
-deletions = ! "gitdeleted() { git log --diff-filter=D --summary; }; gitdeleted"
+deleted = ! "gitdeleted() { git log --diff-filter=D --summary; }; gitdeleted"
 
 ; set the description on the branch
 describe-branch = branch --edit-description
