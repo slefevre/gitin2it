@@ -52,6 +52,9 @@ committers = ! "gitcommitters() { git log --pretty='%an %ae%n%cn %ce' | sort | u
 ; show files in conflict
 conflicts = diff --name-only --diff-filter=U
 
+; abbreivation for `git branch --contains`
+contains = branch --contains
+
 ; copy a file wholesale from another branch, without staging it
 ;   git copy <absolute-file-path> <branch>
 ;   see `take`
