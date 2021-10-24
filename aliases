@@ -93,6 +93,10 @@ description = ! "gitdescription() { git config branch.${1:-$(git rev-parse --abb
 ;   git diff-stat [branch] 
 diff-stat = ! "gitdiffstat() { git diff --stat=$(tput cols) $1 ; }; gitdiffstat"
 
+; find a string 
+; https://stackoverflow.com/a/13878026
+find = ! "gitfind() { git rev-list --all | xargs git grep $1 ; }; gitfind"
+
 ; find a file (or partial filename match) anywhere in the repo
 ; https://stackoverflow.com/a/37212743/151841 
 ;    git find-file PATTERN
