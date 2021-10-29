@@ -187,6 +187,11 @@ resurrect = !git checkout $(git rev-list -n 1 HEAD -- "$1")^ -- "$1"
 ;    git remove BRANCHNAME [remote]
 remove = ! "gitremove() { git branch -D $1 && git push ${2:-origin} --delete $1 ; }; gitremove"
 
+; rename a branch 
+;   git rename OLDNAME NEWNAME [remote]
+; https://stackoverflow.com/a/30590238/151841 
+rename = ! "gitrename() { git branch -m $1 $2 && git push ${3:-origin} --delete $1 && git push ${3:-origin} $2 && git push ${3:-origin} -u $2; }; gitrename"
+
 ; show if branches are ahead or behind of remote
 schedule = for-each-ref --format="%(refname:short) %(upstream:track)" refs/heads
 
