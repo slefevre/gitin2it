@@ -268,7 +268,7 @@ unmerged = ! "gitunmerged() { git branch --no-merged ${1:-master}; }; gitunmerge
 unskip = update-index --no-skip-worktree
 
 ; unstaged staged changes
-unstage = reset HEAD {$1}
+unstage = reset 
 
 ; show what files are not tracked
 untracked = ls-files --others --exclude-standard --ignored
