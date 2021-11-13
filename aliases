@@ -225,6 +225,9 @@ squash = merge --squash
 ; "How do I _stash untracked_ files?"
 stash-untracked = stash --untracked --
 
+; stash unstaged changes only (leave staged changes alone)
+stash-unstaged = stash --keep-index -u
+
 ; show files that are staged (added but not committed)
 staged = diff --cached
 
