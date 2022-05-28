@@ -33,6 +33,7 @@ changed = diff --stat
 changes = diff --diff-filter=M
 
 ; delete all uncommitted changes and untracked files
+; alias scrub
 cleanse = ! "gitcleanse() { git reset --hard; git clean -f -f -d; }; gitcleanse"
 
 ; remove all unstaged changes
@@ -192,10 +193,14 @@ remove = ! "gitremove() { git branch -D $1 && git push ${2:-origin} --delete $1 
 ; https://stackoverflow.com/a/30590238/151841 
 rename = ! "gitrename() { git branch -m $1 $2 && git push ${3:-origin} --delete $1 && git push ${3:-origin} $2 && git push ${3:-origin} -u $2; }; gitrename"
 
+; commit with the default commit message
+resolve = commit --file .git/MERGE_MSG
+
 ; show if branches are ahead or behind of remote
 schedule = for-each-ref --format="%(refname:short) %(upstream:track)" refs/heads
 
 ; delete all uncommitted changes and untracked files
+; alias cleanse
 scrub = ! "gitscrub() { git reset --hard; git clean -f -f -d; }; gitscrub"
 
 ; search the repo for a string
@@ -227,6 +232,9 @@ stash-untracked = stash --untracked --
 
 ; stash unstaged changes only (leave staged changes alone)
 stash-unstaged = stash --keep-index -u
+
+; list current stashes
+stashes = stash list
 
 ; show files that are staged (added but not committed)
 staged = diff --cached

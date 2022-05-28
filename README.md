@@ -48,7 +48,20 @@ Git aliases that
  - FEA `unmodify`: undo modifications, but keep/ignore new files, deletions, etc.
  - BUG `copy` throws error when asked to copy a file from another branch which doesn't exist on the current branch.
     "fatal: Path 'resources/assets/js/ckeditor.js' exists on disk, but not in the index." 
-
+ - BUG make `resolve` use repo root for commit message
+ - FEA `is-staged` are there changes staged?
+ - FEA `is-modified` are there local modifications?
+ - FEA `is-changed` are there changes?
+ - FEA `is-stashed` are there items in the stash?
+ - FEA `is-deleted` are there uncommitted deletes?
+ - FEA `is-new` are there new uncommited files?
+ - FEA `is-untracked` are there files that are not being tracked?
+ - FEA `is-dirty` are there any unsaved, uncommitted changes?
+ - FEA `ignore`
+ - FEA `forget`
+ - FEA `is-`
+ - FEA `tracking/tracked`
+ - FEA `remote mv`
 ---
 
 \* Who decides what is intuitive or idiomatic?
