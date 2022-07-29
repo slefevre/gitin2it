@@ -62,6 +62,8 @@ Git aliases that
  - FEA `is-`
  - FEA `tracking/tracked`
  - FEA `remote mv`
+ - FEA `chmod`
+ - FEA `wipe` delete the repo with --mirror --force
 ---
 
 \* Who decides what is intuitive or idiomatic?
