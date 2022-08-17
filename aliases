@@ -61,7 +61,7 @@ conflicts = diff --name-only --diff-filter=U
 contains = branch --contains
 
 ; copy a file wholesale from another branch, without staging it
-;   git copy <absolute-file-path> <branch>
+;   $ git copy <absolute-file-path> <branch>
 ;   see `take`
 copy = ! "gitcopy() { git show $2:$1 > $1 ; }; gitcopy"
 
@@ -99,7 +99,7 @@ description = ! "gitdescription() { git config branch.${1:-$(git rev-parse --abb
 
 ; syntax sugar and QoL for `git diff --stat`
 ; use `tput` to apply the approprate column size in a `diff --stat`
-;   git diff-stat [branch] 
+;   $ git diff-stat [branch] 
 diff-stat = ! "gitdiffstat() { git diff --stat=$(tput cols) $1 ; }; gitdiffstat"
 
 ; find a string 
@@ -108,7 +108,7 @@ find = ! "gitfind() { git rev-list --all | xargs git grep $1 ; }; gitfind"
 
 ; find a file (or partial filename match) anywhere in the repo
 ; https://stackoverflow.com/a/37212743/151841 
-;    git find-file PATTERN
+;    $ git find-file PATTERN
 find-file = ! "gitfindfile() { for branch in $(git for-each-ref --format=\"%(refname)\" refs/heads); do if git ls-tree -r --name-only $branch | grep \"$1\" > /dev/null; then  echo \"${branch}:\"; git ls-tree -r --name-only $branch | nl -bn -w3 | grep \"$1\"; fi; done; }; gitfindfile"
 
 ; if you've added a tracked file to the .gitignore, it will still persist. This removes it.
@@ -155,7 +155,7 @@ modified = diff --diff-filter=M
 new = ls-files --others --exclude-standard
 
 ; check out the next commit going towards a branch head
-;    git checkout next master
+;    $ git checkout next master
 ; https://stackoverflow.com/a/14200660/151841
 next = ! "gitnext() { git checkout $( git rev-list --topo-order HEAD.."$1" | tail -n 1 ) ; }; gitnext"
 
@@ -187,17 +187,17 @@ remote-branches = branch -r
 remotes = remote -v
 
 ; restore a file whose deletion has been committed
-;   git restore FILENAME
+;   $ git restore FILENAME
 restore = !git checkout $(git rev-list -n 1 HEAD -- "$1")^ -- "$1"
 revive = !git checkout $(git rev-list -n 1 HEAD -- "$1")^ -- "$1"
 resurrect = !git checkout $(git rev-list -n 1 HEAD -- "$1")^ -- "$1"
 
 ; delete a branch locally and remotely
-;    git remove BRANCHNAME [remote]
+;    $ git remove BRANCHNAME [remote]
 remove = ! "gitremove() { git branch -D $1 && git push ${2:-origin} --delete $1 ; }; gitremove"
 
 ; rename a branch 
-;   git rename OLDNAME NEWNAME [remote]
+;   $ git rename OLDNAME NEWNAME [remote]
 ; https://stackoverflow.com/a/30590238/151841 
 rename = ! "gitrename() { git branch -m $1 $2 && git push ${3:-origin} --delete $1 && git push ${3:-origin} $2 && git push ${3:-origin} -u $2; }; gitrename"
 
