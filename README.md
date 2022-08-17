@@ -46,6 +46,7 @@ Git aliases that
  - FEA some command to show files ignored but still tracked
  - FEA `blamedir`: like blame, but shows who introduced files in a directory.
  - FEA `unmodify`: undo modifications, but keep/ignore new files, deletions, etc.
+ - FEA `like`: make the current branch just like the state of another branch
  - BUG `copy` throws error when asked to copy a file from another branch which doesn't exist on the current branch.
     "fatal: Path 'resources/assets/js/ckeditor.js' exists on disk, but not in the index." 
 

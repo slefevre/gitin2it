@@ -13,6 +13,10 @@ added = log --diff-filter=A --
 alias = config --get-regexp ^alias\\.
 aliases = config --get-regexp ^alias\\.
 
+; show the most recent common ancestor
+; see also `diverged`
+ancestor = ! "gitancestor() { git merge-base --fork-point $1 $2 }; gitancestor"
+
 ; list names of contributors
 ;   see committers, contributors
 authors = ! "gitauthors() { git log --pretty='%an %ae%n%cn %ce' | sort | uniq; }; gitauthors"
@@ -74,6 +78,10 @@ cut = ! "gitcut() { git branch -d $1; git push ${2:-origin} --delete $1; }; gitc
 ; alias for checkout -p
 ; git discard [filename]
 discard = ! "gitdiscard() { git checkout -p ${1}; }; gitdiscard"
+
+; show the most recent common ancestor
+; see also `ancestor`
+diverged = ! "gitdiverged() { git merge-base --fork-point $1 $2 }; git diverged"
 
 ; commit file deletions not done by `git rm`.
 ; TODO: add specify filename feature
