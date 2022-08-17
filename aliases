@@ -99,15 +99,15 @@ description = ! "gitdescription() { git config branch.${1:-$(git rev-parse --abb
 
 ; syntax sugar and QoL for `git diff --stat`
 ; use `tput` to apply the approprate column size in a `diff --stat`
-;   $ git diff-stat [branch] 
+;   $ git diff-stat [branch]
 diff-stat = ! "gitdiffstat() { git diff --stat=$(tput cols) $1 ; }; gitdiffstat"
 
-; find a string 
+; find a string
 ; https://stackoverflow.com/a/13878026
 find = ! "gitfind() { git rev-list --all | xargs git grep $1 ; }; gitfind"
 
 ; find a file (or partial filename match) anywhere in the repo
-; https://stackoverflow.com/a/37212743/151841 
+; https://stackoverflow.com/a/37212743/151841
 ;    $ git find-file PATTERN
 find-file = ! "gitfindfile() { for branch in $(git for-each-ref --format=\"%(refname)\" refs/heads); do if git ls-tree -r --name-only $branch | grep \"$1\" > /dev/null; then  echo \"${branch}:\"; git ls-tree -r --name-only $branch | nl -bn -w3 | grep \"$1\"; fi; done; }; gitfindfile"
 
@@ -204,9 +204,9 @@ resurrect = !git checkout $(git rev-list -n 1 HEAD -- "$1")^ -- "$1"
 ;    $ git remove BRANCHNAME [remote]
 remove = ! "gitremove() { git branch -D $1 && git push ${2:-origin} --delete $1 ; }; gitremove"
 
-; rename a branch 
+; rename a branch
 ;   $ git rename OLDNAME NEWNAME [remote]
-; https://stackoverflow.com/a/30590238/151841 
+; https://stackoverflow.com/a/30590238/151841
 rename = ! "gitrename() { git branch -m $1 $2 && git push ${3:-origin} --delete $1 && git push ${3:-origin} $2 && git push ${3:-origin} -u $2; }; gitrename"
 
 ; commit with the default commit message
@@ -295,7 +295,7 @@ unmerged = ! "gitunmerged() { git branch --no-merged ${1:-master}; }; gitunmerge
 unskip = update-index --no-skip-worktree
 
 ; unstaged staged changes
-unstage = reset 
+unstage = reset
 
 ; show what files are not tracked
 untracked = ls-files --others --exclude-standard --ignored
