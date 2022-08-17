@@ -262,7 +262,7 @@ take = ! "gittake() { git checkout $1 $2 ; }; gittake"
 this = rev-parse --abbrev-ref HEAD
 
 ; show what files are being tracked
-tracked = ls-tree -r master --name-only
+tracked = ! "gittracked() { git ls-tree -r $(git rev-parse --abbrev-ref HEAD) --name-only ; }; gittracked"
 
 ; show what remote(s) the current branch is tracking
 tracking = rev-parse --abbrev-ref --symbolic-full-name @{u}
