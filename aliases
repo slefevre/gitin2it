@@ -248,7 +248,7 @@ stashes = stash list
 staged = diff --cached
 
 ; stop whatever stoppable process git is in the middle of (merge, bisect)
-stop = ! "gitstop() { git bisect reset; git merge --abort; }; gitstop"
+stop = ! "gitstop() { git bisect reset; git merge --abort; git rebase --abort}; gitstop"
 
 ; show all tags
 ; I made this is a bash function so that you can't accidentally set a tag with this
