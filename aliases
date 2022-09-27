@@ -61,7 +61,7 @@ conflicts = diff --name-only --diff-filter=U
 contains = branch --contains
 
 ; copy a file wholesale from another branch, without staging it
-;   $ git copy <absolute-file-path> <branch>
+;   $git copy <absolute-file-path> <branch>
 ;   see `take`
 copy = ! "gitcopy() { git show $2:$1 > $1 ; }; gitcopy"
 
@@ -135,12 +135,21 @@ keep-both = ! "gitkeepboth() { grep -v -e'^<<<<<<<' -e'^>>>>>>>' -e'=======' $1 
 ;   alias `newest`
 latest = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
 
-; make the current state like another branch. 
-; 
-;like = ! "gitlike() { pushd $(git rev-parse --show-toplevel); popd; }; gitlike"
-;like = ! "gitlike() { pushd $(git rev-parse --show-toplevel;); }; gitlike"
+; make the current state like another branch.
+like = !bash -c "'f() { \
+  pushd $(git rev-parse --show-toplevel;) ; \
+  git ls-tree -r $(git rev-parse --abbrev-ref HEAD;) --name-only --full-name | xargs rm ; \
+  git ls-tree -r master --name-only --fullname ; \
+  popd ; \
+}; f'"
+
+;  git ls-tree -r master --name-only --fullname  | xargs -I{} git show master:{} > {} ; \
+
+;  git ls-tree -r  master --name-only --full-name | xargs rm ; \
+
+;  git show $2:$1 > $1 ;
 ;  git ls-tree -r $() --fullname
-; git ls-tree -r  master --name-only --full-name | xargs rm ; 
+; git ls-tree -r  master --name-only --full-name | xargs rm ;
 ; pwd = rev-parse --show-toplevel;
 
 ; show local branches
