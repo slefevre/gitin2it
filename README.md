@@ -65,6 +65,10 @@ Git aliases that
  - FEA `remote mv`
  - FEA `chmod`
  - FEA `wipe` delete the repo with --mirror --force
+ - FEA add cherry pick to git stop
+ - FEA `harvest` apply a series of cherry picks
+ - FEA `reclone` re-clone a repo
+ - FEA `outstanding` -- any uncommitted cahnges, stashes, in-progress cherry pick, merge, etc
 ---
 
 \* Who decides what is intuitive or idiomatic?
