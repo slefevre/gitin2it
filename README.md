@@ -14,14 +14,14 @@ where `path/to/gitin2it/aliases` is the path, relative from the location of your
 alias-name required-argument [optional-argument|'default-value'] [optional-argument]
 
 # What belongs here?
-Git aliases that 
+Git aliases that
  - are intuitively, idiomatically named *
  - replace commands that have switches...
    - `git ignored` vs. `git ls-files --others --exclude-standard --ignored`
 
      *show ignored files in repository*
  - ... or syntax
-   - `git back` vs. `git checkout HEAD~1` 
+   - `git back` vs. `git checkout HEAD~1`
  - are named after google searches or stack overflow questions
    - "How do I unstage changes that I've commited?"
      `git unstage` vs. `git reset`
@@ -29,8 +29,8 @@ Git aliases that
    - `git diff-stat` automatically sizes `stat` output to terminal width
  - Wield the power of shell commands
    - two sequential commands: `git scrub` vs. `git reset --hard; git clean -f -f -d;` to remove all changes and new files
-   - optional common defaults: 
-     - `git set-upstream` // defaults to `origin` 
+   - optional common defaults:
+     - `git set-upstream` // defaults to `origin`
      - `git set-upstream remote-other-than-origin` // sets the upstream remote to (an existing) one other than origin
 
 # What doesn't belong here?
@@ -48,7 +48,7 @@ Git aliases that
  - FEA `unmodify`: undo modifications, but keep/ignore new files, deletions, etc.
  - FEA `like`: make the current branch just like the state of another branch
  - BUG `copy` throws error when asked to copy a file from another branch which doesn't exist on the current branch.
-    "fatal: Path 'resources/assets/js/ckeditor.js' exists on disk, but not in the index." 
+    "fatal: Path 'resources/assets/js/ckeditor.js' exists on disk, but not in the index."
  - BUG make `resolve` use repo root for commit message
  - FEA `is-staged` are there changes staged?
  - FEA `is-modified` are there local modifications?
@@ -73,4 +73,4 @@ Git aliases that
 
 \* Who decides what is intuitive or idiomatic?
 
-> I do. 
+> I do.
