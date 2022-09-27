@@ -138,10 +138,11 @@ latest = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color
 ; make the current state like another branch.
 like = !bash -c "'f() { \
   pushd $(git rev-parse --show-toplevel;) ; \
-  git ls-tree -r $(git rev-parse --abbrev-ref HEAD;) --name-only --full-name | xargs rm ; \
-  git ls-tree -r master --name-only --fullname ; \
   popd ; \
 }; f'"
+
+;  git ls-tree -r $(git rev-parse --abbrev-ref HEAD;) --name-only --full-name  | tr '\n' '\0' | xargs -0 rm ; \
+;  git ls-tree -r master --name-only --fullname  | tr '\n' '\0' ; \
 
 ;  git ls-tree -r master --name-only --fullname  | xargs -I{} git show master:{} > {} ; \
 
