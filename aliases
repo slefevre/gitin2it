@@ -22,6 +22,7 @@ ancestor = ! "gitancestor() { git merge-base --fork-point $1 $2 }; gitancestor"
 authors = ! "gitauthors() { git log --pretty='%an %ae%n%cn %ce' | sort | uniq; }; gitauthors"
 
 ; go back one commit
+; SEE to, towards, next
 back = ! "gitback() { git checkout HEAD~${1:-1} ; }; gitback"
 
 ; show all branches
@@ -160,6 +161,8 @@ new = ls-files --others --exclude-standard
 ; check out the next commit going towards a branch head
 ;    $ git checkout next main
 ; https://stackoverflow.com/a/14200660/151841
+; SEE to, towards
+; SEE back
 next = ! "gitnext() { git checkout $( git rev-list --topo-order HEAD.."$1" | tail -n 1 ) ; }; gitnext"
 
 ; show local branches not tracking a remote
@@ -263,6 +266,20 @@ take = ! "gittake() { git checkout $1 $2 ; }; gittake"
 
 ; show just the name of the current branch
 this = rev-parse --abbrev-ref HEAD
+
+; check out the next commit going towards a branch head
+;    $ git to main
+; https://stackoverflow.com/a/14200660/151841
+; ALIASES next, towards
+; SEE back
+to = ! "gitto() { git checkout $( git rev-list --topo-order HEAD.."$1" | tail -n 1 ) ; }; gitto"
+
+; check out the next commit going towards a branch head
+;    $ git towards main
+; https://stackoverflow.com/a/14200660/151841
+; ALIASES next, to
+; SEE back
+towards = ! "gittowards() { git checkout $( git rev-list --topo-order HEAD.."$1" | tail -n 1 ) ; }; gittowards"
 
 ; show what files are being tracked
 tracked = ! "gittracked() { git ls-tree -r $(git rev-parse --abbrev-ref HEAD) --name-only ; }; gittracked"
