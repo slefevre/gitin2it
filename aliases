@@ -148,6 +148,9 @@ log-stat = ! "gitlogstat() { git log --stat=$(tput cols) $1 ; }; gitlogstat"
 ; show merged branches
 merged = branch --merge
 
+; show commits existing in another branch that are `missing` from this branch 
+missing = ! "gitmissing() { git branch --no-contains ${1:-main}; }; gitmissing"
+
 ; show diff(s) of modified files only (no untracked or deleted files)
 modified = diff --diff-filter=M
 
@@ -307,8 +310,6 @@ welcome = ! "gitaddnew() { git ls-files --others --exclude-standard | xargs git 
 ; show username and email
 whoami = ! "gitwhoami() { git config user.name; git config user.email; }; gitwhoami"
 
-; show branches out of date (don't have the commits from) with a branch
-without = ! "gitwithout() { git branch --no-contains ${1:-main}; }; gitwithout"
 
 ; word diff
 word-diff  = diff --word-diff
