@@ -48,7 +48,7 @@ clear-cache = rm -r --cached .
 
 ; show commits that are only in this branch, and not in the other
 ; git commits [branch-name]
-commits = ! "gitcommits() { git cherry -v ${1:-master} ; }; gitcommits"
+commits = ! "gitcommits() { git cherry -v ${1:-main} ; }; gitcommits"
 
 ; show unique committer usernames
 ;    see contributors, authors
@@ -155,7 +155,7 @@ modified = diff --diff-filter=M
 new = ls-files --others --exclude-standard
 
 ; check out the next commit going towards a branch head
-;    $ git checkout next master
+;    $ git checkout next main
 ; https://stackoverflow.com/a/14200660/151841
 next = ! "gitnext() { git checkout $( git rev-list --topo-order HEAD.."$1" | tail -n 1 ) ; }; gitnext"
 
@@ -280,8 +280,8 @@ uncommit = reset --soft HEAD^
 unlock = ! "gitunlock() { rm -f ./.git/index.lock ; }; gitunlock"
 
 ; show branches unmerged into specified branch
-; git unmerged [BRANCH|'master']
-unmerged = ! "gitunmerged() { git branch --no-merged ${1:-master}; }; gitunmerged"
+; git unmerged [BRANCH|'main']
+unmerged = ! "gitunmerged() { git branch --no-merged ${1:-main}; }; gitunmerged"
 
 ; tell git to start noticing changes to a file again. See `skip`, `skipped`
 unskip = update-index --no-skip-worktree
@@ -299,7 +299,7 @@ unwelcome = clean -f -d
 unpushed = log --branches --not --remotes --no-walk --decorate
 
 ; show what files are tracked in the repos
-versioned = ls-tree -r master --name-only
+versioned = ls-tree -r main --name-only
 
 ; add (`git add`) unstaged files
 welcome = ! "gitaddnew() { git ls-files --others --exclude-standard | xargs git add ; }; gitaddnew"
@@ -308,7 +308,7 @@ welcome = ! "gitaddnew() { git ls-files --others --exclude-standard | xargs git 
 whoami = ! "gitwhoami() { git config user.name; git config user.email; }; gitwhoami"
 
 ; show branches out of date (don't have the commits from) with a branch
-without = ! "gitwithout() { git branch --no-contains ${1:-master}; }; gitwithout"
+without = ! "gitwithout() { git branch --no-contains ${1:-main}; }; gitwithout"
 
 ; word diff
 word-diff  = diff --word-diff
