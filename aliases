@@ -77,6 +77,10 @@ current = rev-parse --abbrev-ref HEAD
 ;    `git cut BRANCH-NAME [REMOTE-NAME]`
 cut = ! "gitcut() { git branch -d $1; git push ${2:-origin} --delete $1; }; gitcut"
 
+; show dangling commits
+; https://lukescott.co/2019/05/10/git-finding-lost-dangling-commits/
+dangling = ! "gitdangling() { git fsck --lost-found | grep '^dangling commit' | sed 's/^dangling commit //g' | xargs git show -s --oneline; }; gitdangling"
+
 ; alias for checkout -p
 ; git discard [filename]
 discard = ! "gitdiscard() { git checkout -p ${1}; }; gitdiscard"
