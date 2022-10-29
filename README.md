@@ -69,6 +69,8 @@ Git aliases that
  - FEA `harvest` apply a series of cherry picks
  - FEA `reclone` re-clone a repo
  - FEA `outstanding` -- any uncommitted cahnges, stashes, in-progress cherry pick, merge, etc
+ - FEA reverse order of `commits` alias so that the latest appears first
+
 ---
 
 \* Who decides what is intuitive or idiomatic?
