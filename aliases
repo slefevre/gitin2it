@@ -271,6 +271,11 @@ tags = ! "gittags() { git tag; }; gittags"
 ;   see `copy`
 take = ! "gittake() { git checkout $1 $2 ; }; gittake"
 
+; show the diffs of commits that exist in the other branch, but not in this
+;    see `my-diffs`
+;    git their-diffs [other-branch]
+their-diffs = ! "gittheirdiffs() { git show @..${1:-main}; }; gittheirdiffs"
+
 ; show just the name of the current branch
 this = rev-parse --abbrev-ref HEAD
 
