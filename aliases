@@ -159,6 +159,9 @@ missing = ! "gitmissing() { git branch --no-contains ${1:-main}; }; gitmissing"
 ; show diff(s) of modified files only (no untracked or deleted files)
 modified = diff --diff-filter=M
 
+; show the diffs of commits that only exist in this branch, compared to another branch
+my-diffs = ! "gitmydiffs() { git show ${1:-main}..@; }; gitmydiffs"
+
 ; show only new (unstaged) files
 new = ls-files --others --exclude-standard
 
