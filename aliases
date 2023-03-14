@@ -160,6 +160,8 @@ missing = ! "gitmissing() { git branch --no-contains ${1:-main}; }; gitmissing"
 modified = diff --diff-filter=M
 
 ; show the diffs of commits that only exist in this branch, compared to another branch
+;    see `their-diffs`
+;    $ git my-diffs [other-branch]
 my-diffs = ! "gitmydiffs() { git show ${1:-main}..@; }; gitmydiffs"
 
 ; show only new (unstaged) files
