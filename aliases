@@ -109,7 +109,7 @@ diff-stat = ! "gitdiffstat() { git diff --stat=$(tput cols) $1 ; }; gitdiffstat"
 
 ; find a string
 ; https://stackoverflow.com/a/13878026
-find = ! "gitfind() { git rev-list --all | xargs git grep $1 ; }; gitfind"
+find = ! "gitfind() { git log -S$1; }; gitfind"
 
 ; find a file (or partial filename match) anywhere in the repo
 ; https://stackoverflow.com/a/37212743/151841
