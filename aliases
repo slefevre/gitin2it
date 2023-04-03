@@ -81,8 +81,11 @@ cut = ! "gitcut() { git branch -d $1; git push ${2:-origin} --delete $1; }; gitc
 ; https://lukescott.co/2019/05/10/git-finding-lost-dangling-commits/
 dangling = ! "gitdangling() { git fsck --lost-found | grep '^dangling commit' | sed 's/^dangling commit //g' | xargs git show -s --oneline; }; gitdangling"
 
+; show the default branch name
+default = ! "gitdefault() { git branch -rl '*/HEAD' | awk -F/ '{print $NF}'; }; gitdefault"
+
 ; alias for checkout -p
-; git discard [filename]
+;   $ git discard [filename]
 discard = ! "gitdiscard() { git checkout -p ${1}; }; gitdiscard"
 
 ; show the most recent common ancestor
