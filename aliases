@@ -47,10 +47,6 @@ clear = reset --hard
 ; empty git's cache
 clear-cache = rm -r --cached .
 
-; show the commit message
-;   $ git message [SHA1]
-message = ! "gitmessage() { git show -s --format=%B ${1:-HEAD}; }; gitmessage"
-
 ; show commits that are only in this branch, and not in the other
 ; git commits [branch-name]
 commits = ! "gitcommits() { git cherry -v ${1:-main} | tac ; }; gitcommits"
@@ -157,6 +153,9 @@ log-stat = ! "gitlogstat() { git log --stat=$(tput cols) $1 ; }; gitlogstat"
 ; show merged branches
 merged = branch --merge
 
+; show the commit message
+;   $ git message [SHA1]
+message = ! "gitmessage() { git show -s --format=%B ${1:-HEAD}; }; gitmessage"
 ; show commits existing in another branch that are `missing` from this branch
 missing = ! "gitmissing() { git branch --no-contains ${1:-main}; }; gitmissing"
 
