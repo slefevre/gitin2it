@@ -50,6 +50,7 @@ Git aliases that
  - BUG `copy` throws error when asked to copy a file from another branch which doesn't exist on the current branch.
     "fatal: Path 'resources/assets/js/ckeditor.js' exists on disk, but not in the index."
  - BUG make `resolve` use repo root for commit message
+ - BUG change `main` branch references to the default branch
  - FEA `is-staged` are there changes staged?
  - FEA `is-modified` are there local modifications?
  - FEA `is-changed` are there changes?
