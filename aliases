@@ -47,6 +47,10 @@ clear = reset --hard
 ; empty git's cache
 clear-cache = rm -r --cached .
 
+; show the commit message
+;   $ git message [SHA1]
+message = ! "gitmessage() { git show -s --format=%B ${1:-HEAD}; }; gitmessage"
+
 ; show commits that are only in this branch, and not in the other
 ; git commits [branch-name]
 commits = ! "gitcommits() { git cherry -v ${1:-main} | tac ; }; gitcommits"
