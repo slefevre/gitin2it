@@ -31,6 +31,9 @@ branches = ! "gitbranches() { git branch -a | grep ${1:-''} ; }; gitbranches"
 ; set the description on the branch
 branch-describe = branch --edit-description
 
+; does an object of this name exist?
+exists = rev-parse --verify
+
 ; summarize unstaged changes
 changed = diff --stat
 
