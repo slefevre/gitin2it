@@ -73,9 +73,6 @@ contains = branch --contains
 ;   see `take`
 copy = ! "gitcopy() { if [ -z "$*" ]; then echo '\nNo arguments supplied.\n$ git copy <absolute-file-path> <branch>'; exit 0; else git show $2:$1 > $1 ; fi; }; gitcopy"
 
-
-; '$ git copy <absolute-file-path> <branch>'; exit 0; fi; git show $2:$1 > $1 ; }; gitcopy"
-
 ; show unique contributor usernames
 ;    see authors, committers
 contributors = ! "gitcontributors() { git log --pretty='%an %ae%n%cn %ce' | sort | uniq; }; gitcontributors"
