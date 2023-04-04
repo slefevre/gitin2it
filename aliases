@@ -31,9 +31,6 @@ branches = ! "gitbranches() { git branch -a | grep ${1:-''} ; }; gitbranches"
 ; set the description on the branch
 branch-describe = branch --edit-description
 
-; does an object of this name exist?
-exists = rev-parse --verify
-
 ; summarize unstaged changes
 changed = diff --stat
 
@@ -113,6 +110,9 @@ description = ! "gitdescription() { git config branch.${1:-$(git rev-parse --abb
 ; use `tput` to apply the approprate column size in a `diff --stat`
 ;   $ git diff-stat [branch]
 diff-stat = ! "gitdiffstat() { git diff --stat=$(tput cols) $1 ; }; gitdiffstat"
+
+; does an object of this name exist?
+exists = rev-parse --verify
 
 ; find a string
 ; https://stackoverflow.com/a/13878026
