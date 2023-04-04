@@ -71,7 +71,10 @@ contains = branch --contains
 ; copy a file wholesale from another branch, without staging it
 ;   $ git copy <absolute-file-path> <branch>
 ;   see `take`
-copy = ! "gitcopy() { git show $2:$1 > $1 ; }; gitcopy"
+copy = ! "gitcopy() { if [ -z "$*" ]; then echo '\nNo arguments supplied.\n$ git copy <absolute-file-path> <branch>'; exit 0; else git show $2:$1 > $1 ; fi; }; gitcopy"
+
+
+; '$ git copy <absolute-file-path> <branch>'; exit 0; fi; git show $2:$1 > $1 ; }; gitcopy"
 
 ; show unique contributor usernames
 ;    see authors, committers
