@@ -239,10 +239,10 @@ search = ! "gitsearch() { git rev-list --all | xargs git grep $1; }; gitsearch"
 ; git set-upstream [remote|'origin']
 set-upstream = ! "gitsetupstream() { BRANCH=$(git rev-parse --abbrev-ref HEAD); git push ${1:-origin} $BRANCH; git branch --set-upstream-to=${1:-origin}/$BRANCH $BRANCH; }; gitsetupstream"
 
+short-stat = status --short
+
 ; show the filesystem size of the tracked objects in the repo
 size = count-objects -vH
-
-short-stat = status --short
 
 ; keep a file from changing, see `unskip`, `skipped`
 skip = update-index --skip-worktree
