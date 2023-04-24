@@ -161,7 +161,7 @@ log-stat = ! "gitlogstat() { git log --stat=$(tput cols) $1 ; }; gitlogstat"
 merged = branch --merge
 
 ; show commits existing in another branch that are `missing` from this branch
-missing = ! "gitmissing() { git branch --no-contains ${1:-main}; }; gitmissing"
+missing = ! "gitmissing() { git show @..${1:-main}; }; gitmissing"
 
 ; show diff(s) of modified files only (no untracked or deleted files)
 modified = diff --diff-filter=M
