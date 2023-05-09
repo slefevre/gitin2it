@@ -199,6 +199,9 @@ state = ! "git rev-parse --show-toplevel; git remote -v; git branch; git status;
 ; `cherry-pick` is simply too much typing
 pick = cherry-pick
 
+; delete local tags that are not on the remote
+prune-tags = ! "gitprunetags() { git tag -l | xargs git tag -d ; git fetch --tags; }; gitprunetags"
+
 ; show the root directory of the repository
 pwd = rev-parse --show-toplevel;
 
