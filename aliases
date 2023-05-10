@@ -316,6 +316,9 @@ tracked = ! "gittracked() { git ls-tree -r $(git rev-parse --abbrev-ref HEAD) --
 ; show what remote(s) the current branch is tracking
 tracking = rev-parse --abbrev-ref --symbolic-full-name @{u}
 
+; show the name of the remote that the current branch is tracking
+tracking-remote = ! "gittrackingremote() { git config branch.$(git name-rev --name-only HEAD).remote ; }; gittrackingremote"
+
 ; restore deleted files if changes aren't staged
 undelete = ! "gitundelete() { git status | grep 'deleted' | awk '{print $2}' | xargs git checkout -- ; }; gitundelete"
 
