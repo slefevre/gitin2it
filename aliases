@@ -101,7 +101,7 @@ delete = ! "gitdelete() { git diff --diff-filter=D --name-only | xargs git rm; }
 deleted = ! "gitdeleted() { git log --diff-filter=D --summary; }; gitdeleted"
 
 ; delete a tag and push its deletion
-delete-tag = ! "gitdeletetag() { git tag -d $1; git push origin :refs/tags/$1 }; git deletedtag"
+delete-tag = ! "gitdeletetag() { git tag -d $1; git push origin :refs/tags/$1; }; gitdeletetag"
 
 ; set the description on the branch
 describe-branch = branch --edit-description
