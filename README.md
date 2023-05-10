@@ -39,6 +39,8 @@ Git aliases that
   - personalizations or niceities, such as a custom log format with certain fields, colors, etc.
 
 # TODO
+ - UPG use default remote instead of assuming `origin`
+ - UPG use default branch instead of assuming `main`
  - DOC define approach to verb tenses, nouns, plurals (e.g. `changes`, `change`, `changed`).
  - FEA add filename argument to `delete`.
  - FEA add filename argument to `undelete`.
