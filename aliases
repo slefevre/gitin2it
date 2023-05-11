@@ -97,11 +97,15 @@ diverged = ! "gitdiverged() { git merge-base --fork-point $1 $2 }; git diverged"
 ; TODO: add specify filename feature
 delete = ! "gitdelete() { git diff --diff-filter=D --name-only | xargs git rm; }; gitdelete"
 
+
 ; show the log of files deleted in this branch
 deleted = ! "gitdeleted() { git log --diff-filter=D --summary; }; gitdeleted"
 
 ; delete a tag and push its deletion
 delete-tag = ! "gitdeletetag() { git tag -d $1; git push origin :refs/tags/$1; }; gitdeletetag"
+
+; show the default branch the remote
+default = ! "gitdefault() { basename $(git rev-parse --abbrev-ref ${2:-origin}/HEAD); }; gitdefault"
 
 ; set the description on the branch
 describe-branch = branch --edit-description
