@@ -267,6 +267,7 @@ skipped = ! "gitskipped() { git ls-files -v | grep ^[sS] ; }; gitskipped"
 
 ; do a squash commit
 squash = merge --squash
+squash-merge = merge --squash
 
 ; stash all files, including untracked ones
 ; "How do I _stash untracked_ files?"
